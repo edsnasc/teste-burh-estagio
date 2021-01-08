@@ -1,9 +1,12 @@
 <template>
-  <div class="search" >
-      <form action="#">
-          <input type="text" v-model="searchmovie" placeholder="Pesquisar Filme"><button type="submit">Pesquisar</button>
-      </form>    
+<div>
+  <div class="search">
+    <input type="text" v-model="searchKey" placeholder="Pesquisar Filme">
+    <button @click="getMovie">Pesquisar</button>
   </div>
+    <br>
+    <p>{{movie}}</p>
+</div>
 </template>
 
 <script>
@@ -12,32 +15,31 @@ import { baseApiUrl, ApiKey } from '@/global'
 
 export default {
     name: 'Search',
-    data: function(){
+    data: function() {
         return {
-            searchmovie: "Batman"
+            searchKey:'',
+            movie:[]
 
         }
     },
     methods: {
         getMovie() {
-            const id = this.searchmovie
+            const id = this.searchKey
             const url = `${baseApiUrl}${id}${ApiKey}`
             axios.get(url).then(res => {
-                console.log(res)
+                this.movie = res
             })
+
         }
-    },
-    mounted() {
-        this.getMovie()
-    }   
+    }
 }
 </script>
 
 <style>
     .search {
-        display: flex; 
+        display: flex;
         justify-content: center;
-        align-items: center;
+
     }
 
     
