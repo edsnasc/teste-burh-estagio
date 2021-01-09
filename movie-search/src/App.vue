@@ -14,6 +14,12 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+}
 
+body {
+  background: linear-gradient(to right, rgb(0, 0, 0), rgb(67, 67, 67));
+}
 
 </style>
